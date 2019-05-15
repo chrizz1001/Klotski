@@ -2122,7 +2122,7 @@ function enableInfoButton()
 //---------------------------
 // begin for volume button
 //---------------------------
-var volumeState = 1; //0: off, 1:on
+var volumeState = 0; //0: off, 1:on
 
 function toggleVolumeButton()
 {
