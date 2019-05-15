@@ -95,13 +95,18 @@ window.onresize = function(event) {
 
 window.onload = function()
 {
+	window.startKlotski();
+};
+
+window.startKlotski = function() {
+
 	//just for fixed: chrome sets cursor to text while dragging, why?
 	//http://stackoverflow.com/questions/2745028/chrome-sets-cursor-to-text-while-dragging-why
 	//This will disable any text selection on the page and it seems that browser starts to show custom cursors.
 	document.onselectstart = function(){ return false; } ;
 	init();
 	loadResource(initBoard); //after resource load complete will callback to initBoard
-};	
+}
 
 var gLevelSelectObj;
 var gCurSelectedBoard;
