@@ -108,70 +108,70 @@ var audioSource = {
 
 var imageSource = {
 // for title
-	title: 'image/klotski.png',
+	title: '/js/plugins/Klotski/image/klotski.png',
 	
 // for board & block
-	board:  'image/board1.jpg',
-	block1: 'image/block1.jpg',
-	block2: 'image/block2.jpg',
-	block3: 'image/block3.jpg',
-	block4: 'image/block4.jpg',
+	board:  '/js/plugins/Klotski/image/board1.jpg',
+	block1: '/js/plugins/Klotski/image/block1.jpg',
+	block2: '/js/plugins/Klotski/image/block2.jpg',
+	block3: '/js/plugins/Klotski/image/block3.jpg',
+	block4: '/js/plugins/Klotski/image/block4.jpg',
 	
 //for function button
-	select0: 'image/select0.png',	
-	select1: 'image/select1.png',
-	info0: 'image/info0.png',	
-	info1: 'image/info1.png',
-	volume0: 'image/volume00.png',
-	volume1: 'image/volume01.png',
+	select0: '/js/plugins/Klotski/image/select0.png',
+	select1: '/js/plugins/Klotski/image/select1.png',
+	info0: '/js/plugins/Klotski/image/info0.png',
+	info1: '/js/plugins/Klotski/image/info1.png',
+	volume0: '/js/plugins/Klotski/image/volume00.png',
+	volume1: '/js/plugins/Klotski/image/volume01.png',
 	//game <--> edit mode, switch	
-	edit:    'image/edit.png',
-	game:    'image/game.png',
+	edit:    '/js/plugins/Klotski/image/edit.png',
+	game:    '/js/plugins/Klotski/image/game.png',
 	
 //for pass level dialog
-	replayLevel: 'image/return.png',
-	nextLevel:   'image/nextLevel.png',
-	highScore:   'image/bestScore00.png',
+	replayLevel: '/js/plugins/Klotski/image/return.png',
+	nextLevel:   '/js/plugins/Klotski/image/nextLevel.png',
+	highScore:   '/js/plugins/Klotski/image/bestScore00.png',
 	
 //for play mode button
-	reset0: 'image/reset00.png',
-	reset1: 'image/reset11.png',
-	undo0:  'image/undo00.png',
-	undo1:  'image/undo11.png',
-	redo0:  'image/redo00.png',
-	redo1:  'image/redo11.png',
-	hints0: 'image/hints00.png',
-	hints1: 'image/hints11.png',
+	reset0: '/js/plugins/Klotski/image/reset00.png',
+	reset1: '/js/plugins/Klotski/image/reset11.png',
+	undo0:  '/js/plugins/Klotski/image/undo00.png',
+	undo1:  '/js/plugins/Klotski/image/undo11.png',
+	redo0:  '/js/plugins/Klotski/image/redo00.png',
+	redo1:  '/js/plugins/Klotski/image/redo11.png',
+	hints0: '/js/plugins/Klotski/image/hints00.png',
+	hints1: '/js/plugins/Klotski/image/hints11.png',
 	
 //for demo mode button
-	first0: 'image/first00.png',
-	first1: 'image/first01.png',
-	back0:  'image/backward00.png',
-	back1:  'image/backward01.png',
-	play0: 	'image/play00.png', //play mode
-	play1: 	'image/play01.png', //stop mode
-	play2: 	'image/play02.png', //gray mode
-	next0:  'image/forward00.png',
-	next1:  'image/forward01.png',
-	last0:  'image/last00.png',
-	last1:  'image/last01.png',
+	first0: '/js/plugins/Klotski/image/first00.png',
+	first1: '/js/plugins/Klotski/image/first01.png',
+	back0:  '/js/plugins/Klotski/image/backward00.png',
+	back1:  '/js/plugins/Klotski/image/backward01.png',
+	play0: 	'/js/plugins/Klotski/image/play00.png', //play mode
+	play1: 	'/js/plugins/Klotski/image/play01.png', //stop mode
+	play2: 	'/js/plugins/Klotski/image/play02.png', //gray mode
+	next0:  '/js/plugins/Klotski/image/forward00.png',
+	next1:  '/js/plugins/Klotski/image/forward01.png',
+	last0:  '/js/plugins/Klotski/image/last00.png',
+	last1:  '/js/plugins/Klotski/image/last01.png',
 
 //for edit mode button	
-	test0:  'image/test00.png', 
-	test1:  'image/test01.png', 
-	save0:  'image/save00.png', 
-	save1:  'image/save01.png', 
+	test0:  '/js/plugins/Klotski/image/test00.png',
+	test1:  '/js/plugins/Klotski/image/test01.png',
+	save0:  '/js/plugins/Klotski/image/save00.png',
+	save1:  '/js/plugins/Klotski/image/save01.png',
 	
 //for game mode
-	demoMode0:   'image/demoMode00.png',
-	demoMode1:   'image/demoMode01.png',
-	gameMode0:   'image/gameMode00.png',
-	gameMode1:   'image/gameMode01.png',
+	demoMode0:   '/js/plugins/Klotski/image/demoMode00.png',
+	demoMode1:   '/js/plugins/Klotski/image/demoMode01.png',
+	gameMode0:   '/js/plugins/Klotski/image/gameMode00.png',
+	gameMode1:   '/js/plugins/Klotski/image/gameMode01.png',
 	
 //for msg dialog
-	yes: 'image/yes.png',
-	no:  'image/no.png',
-	ok:	 'image/yes.png'
+	yes: '/js/plugins/Klotski/image/yes.png',
+	no:  '/js/plugins/Klotski/image/no.png',
+	ok:	 '/js/plugins/Klotski/image/yes.png'
 }
 
 function setTxtMsg()
@@ -181,13 +181,13 @@ function setTxtMsg()
 	//if(sysLang == "zh-tw" || sysLang == "zh-hk") { //tranditional chinese
 	if(sysLang.indexOf("zh-") >= 0) { //all chinese
 		gTxtMsg = twTextMsg;
-		imageSource.demoMode0 = 'image/demoMode10.png';
-		imageSource.demoMode1 = 'image/demoMode11.png';
-		imageSource.gameMode0 = 'image/gameMode10.png';
-		imageSource.gameMode1 = 'image/gameMode11.png';
-		imageSource.save0 = 'image/save10.png';
-		imageSource.save1 = 'image/save11.png'; 
-		imageSource.highScore = 'image/bestScore01.png';
+		imageSource.demoMode0 = '/js/plugins/Klotski/image/demoMode10.png';
+		imageSource.demoMode1 = '/js/plugins/Klotski/image/demoMode11.png';
+		imageSource.gameMode0 = '/js/plugins/Klotski/image/gameMode10.png';
+		imageSource.gameMode1 = '/js/plugins/Klotski/image/gameMode11.png';
+		imageSource.save0 = '/js/plugins/Klotski/image/save10.png';
+		imageSource.save1 = '/js/plugins/Klotski/image/save11.png';
+		imageSource.highScore = '/js/plugins/Klotski/image/bestScore01.png';
 	} else {
 		gTxtMsg = enTextMsg;
 	}
