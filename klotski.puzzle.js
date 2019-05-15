@@ -1684,7 +1684,7 @@ function addPlayModeButton()
 		fillPatternImage: images.reset0
 	});
 
-	/*undoButton = new Kinetic.Rect({
+	undoButton = new Kinetic.Rect({
 		x: startX+buttonWidth,
 		y: startY,
 		width: images.undo0.width,
@@ -1714,13 +1714,13 @@ function addPlayModeButton()
 		width: images.gameMode1.width,
 		height: images.gameMode1.height,
 		fillPatternImage: images.gameMode1
-	});*/
+	});
 	
 	gButtonLayer.add(resetButton);
-	// gButtonLayer.add(undoButton);
-	// gButtonLayer.add(redoButton);
-	// gButtonLayer.add(hintsButton);
-	// gButtonLayer.add(playModeButton);
+	gButtonLayer.add(undoButton);
+	gButtonLayer.add(redoButton);
+	gButtonLayer.add(hintsButton);
+	gButtonLayer.add(playModeButton);
 	gButtonLayer.draw();
 }
 
