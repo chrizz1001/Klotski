@@ -150,7 +150,7 @@ function initBoard()
 
 	createFunctionButton();
 	createGameButton();
-	enableFunctionButton();
+	// enableFunctionButton();
 	enableVolumeButton();
 	
 	enableGameButton();
@@ -427,7 +427,7 @@ function addBackgroundLayer()
 	var borderWidth = 20;
 	var textOffset = 15;
 	var titleFontSize = 55;
-	
+	/*
 	var titleText2 = new Kinetic.Text({
 		x: textOffset, 
 		y: boardStageY-titleFontSize,
@@ -461,7 +461,7 @@ function addBackgroundLayer()
 		width: boardStageX,
 		height: boardStageY,
 		fill: BACKGROUND_COLOR
-	});	
+	});	*/
 	
 	var board = new Kinetic.Rect({
 		x: boardStartX,
@@ -470,7 +470,7 @@ function addBackgroundLayer()
 		height: BOARD_HEIGHT,
 		fillPatternImage: images.board
 	});		
-	
+	/*
 	var title = new Kinetic.Image({
           x: titleStartX,
           y: titleStartY,
@@ -478,13 +478,13 @@ function addBackgroundLayer()
 		  scaleX:titleScale,
 		  scaleY:titleScale
 	});	
-
-	document.body.style.background = BACKGROUND_COLOR; //body background color
+*/
+	// document.body.style.background = BACKGROUND_COLOR; //body background color
 	
-	gBackgroundLayer.add(background);
-	gBackgroundLayer.add(title);
-	gBackgroundLayer.add(titleText2);
-	gBackgroundLayer.add(versionText);
+	// gBackgroundLayer.add(background);
+	// gBackgroundLayer.add(title);
+	// gBackgroundLayer.add(titleText2);
+	// gBackgroundLayer.add(versionText);
 	gBackgroundLayer.add(board);
 	gBackgroundLayer.draw();
 }
@@ -1679,7 +1679,7 @@ function addPlayModeButton()
 		fillPatternImage: images.reset0
 	});
 
-	undoButton = new Kinetic.Rect({
+	/*undoButton = new Kinetic.Rect({
 		x: startX+buttonWidth,
 		y: startY,
 		width: images.undo0.width,
@@ -1709,13 +1709,13 @@ function addPlayModeButton()
 		width: images.gameMode1.width,
 		height: images.gameMode1.height,
 		fillPatternImage: images.gameMode1
-	});
+	});*/
 	
 	gButtonLayer.add(resetButton);
-	gButtonLayer.add(undoButton);
-	gButtonLayer.add(redoButton);
-	gButtonLayer.add(hintsButton);
-	gButtonLayer.add(playModeButton);
+	// gButtonLayer.add(undoButton);
+	// gButtonLayer.add(redoButton);
+	// gButtonLayer.add(hintsButton);
+	// gButtonLayer.add(playModeButton);
 	gButtonLayer.draw();
 }
 
