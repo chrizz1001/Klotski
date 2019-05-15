@@ -220,14 +220,14 @@ function loadResource(callback)
 
 var audioSource = [
 //audio
-	{ id: "startup",   src: "audio/title.ogg"},
-	{ id: "woodHit",   src: "audio/woodhit.ogg"},
-	{ id: "happyPass", src: "audio/pass.ogg"},
-	{ id: "stamp",     src: "audio/stamp.ogg"},
-	{ id: "good",      src: "audio/good.ogg"},
-	{ id: "exist",     src: "audio/exist.ogg"},
-	{ id: "error",     src: "audio/error.ogg"},
-	{ id: "success",   src: "audio/success.ogg"}
+	{ id: "startup",   src: "/js/plugins/Klotski/audio/title.ogg"},
+	{ id: "woodHit",   src: "/js/plugins/Klotski/audio/woodhit.ogg"},
+	{ id: "happyPass", src: "/js/plugins/Klotski/audio/pass.ogg"},
+	{ id: "stamp",     src: "/js/plugins/Klotski/audio/stamp.ogg"},
+	{ id: "good",      src: "/js/plugins/Klotski/audio/good.ogg"},
+	{ id: "exist",     src: "/js/plugins/Klotski/audio/exist.ogg"},
+	{ id: "error",     src: "/js/plugins/Klotski/audio/error.ogg"},
+	{ id: "success",   src: "/js/plugins/Klotski/audio/success.ogg"}
 ];
 
 function audioPreload(callback)
