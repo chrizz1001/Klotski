@@ -9,7 +9,7 @@
 //==================
 var gTxtMsg;
 var images = {};
-var noAudio = 0; //no audio support
+var noAudio = 1; //no audio support
 var preload; //preload resource object
 
 //============
@@ -239,7 +239,8 @@ function audioPreload(callback)
 	//preload.on("progress", handleProgress);
 	preload.on("complete", handleComplete);
 
-	preload.loadManifest(audioSource);
+	// preload.loadManifest(audioSource);
+	handleComplete();
 
 	function handleFileError(event) 
 	{
