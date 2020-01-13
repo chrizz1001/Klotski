@@ -1,5 +1,5 @@
 //=====================================================================
-// Klotski (華容道) : vertical slide board selection 
+// Klotski (嚙諍容嚙瘩) : vertical slide board selection 
 //
 // 08/23/2013 - add function for direct open indicate level from url:
 //

@@ -36,24 +36,34 @@
 // 05/10/2013 - create by Simon Hung
 //=============================================================================
 
+
 //===========
-// define 
+// T-SAP define
 //===========
+var FRAME_WRAPPER = 'klotski_wrap';
+var SCALE_FACTOR = parseFloat(window.SCALE_FACTOR);
+
+console.log('KLOTSKI:::SCALE_FACTOR', SCALE_FACTOR)
+//===========
+// define
+//===========
+
+
 var VERSION_STRING = "1.5";
 var DATA_VERSION = 1;
 
 var MIN_SCREEN_X = 1000;
 var MIN_SCREEN_Y = 650;
 
-var BOTTOM_BOUND = 60; //bottom bound for action button
+var BOTTOM_BOUND = 0; //bottom bound for action button
 
-var BLOCK_CELL_SIZE = 90;
-var MAX_MOV_STEP = Math.floor(BLOCK_CELL_SIZE/4);
+var BLOCK_CELL_SIZE = Math.floor(90 * SCALE_FACTOR);
+var MAX_MOV_STEP = Math.floor((BLOCK_CELL_SIZE/4));
 var CELL_BORDER_SIZE = 0;
 
 var BACKGROUND_COLOR = "#FAFAD2"; //Light Goldenrod Yellow
 var TITLE_COLOR = "black";
-var BOARD_BORDER_WIDTH = 50;
+var BOARD_BORDER_WIDTH = 50 * SCALE_FACTOR;
 var BOARD_WIDTH = BLOCK_CELL_SIZE * G_BOARD_X + BOARD_BORDER_WIDTH*2;
 var BOARD_HEIGHT = BLOCK_CELL_SIZE * G_BOARD_Y + BOARD_BORDER_WIDTH*2;
 
@@ -86,6 +96,7 @@ var manualMoveCount = 0; //move count for active hints button
 
 var cellSize = BLOCK_CELL_SIZE - CELL_BORDER_SIZE;
 
+$('#boardStage').css('width', BOARD_WIDTH + 'px');
 /*
 window.onresize = function(event) {
 	//alert("resize");
@@ -129,7 +140,7 @@ function initBoard()
 	createStageLayer();
 	addBackgroundLayer();
 
-	restoreConfigInfo(); //get config info: volume state & data_version
+	// restoreConfigInfo(); //get config info: volume state & data_version
 	
 	gLevelSelectObj = new vSelectBoard();
 	gCurSelectedBoard = gLevelSelectObj.init(
@@ -307,8 +318,8 @@ function initScreenSize()
 	//----------------------------------------------------------------------
 	if( typeof( window.innerWidth ) == 'number' ) {
 		//Non-IE
-		screenX = window.innerWidth;
-		screenY = window.innerHeight;
+		screenX = document.getElementById(FRAME_WRAPPER).offsetWidth;
+		screenY = document.getElementById(FRAME_WRAPPER).offsetHeight;
 	} else if((document.documentElement) && 
 		      (document.documentElement.clientWidth || document.documentElement.clientHeight ) ) 
 	{
@@ -327,9 +338,9 @@ function initScreenSize()
 	if(screenY < MIN_SCREEN_Y) boardStageY = MIN_SCREEN_Y;
 	else boardStageY = screenY - 10;
 	
-	boardStartX = Math.floor((boardStageX - BOARD_WIDTH )/2);
+	boardStartX = Math.floor(0);
 	//boardStartY = Math.floor((boardStageY - BOARD_HEIGHT)/2);
-	boardStartY = Math.floor((boardStageY - BOTTOM_BOUND - BOARD_HEIGHT)/2);
+	boardStartY = Math.floor(0);
 }
  
 function initScreenVariable() 
@@ -350,10 +361,12 @@ function initScreenVariable()
 	// | +------------+ | <== blockStartY
 	// | |            | |
 	
-	blockStartX = Math.floor((boardStageX - G_BOARD_X * BLOCK_CELL_SIZE)/2);
+	// blockStartX = Math.floor((boardStageX - G_BOARD_X * BLOCK_CELL_SIZE)/2);
+	// blockStartY = boardStartY + Math.floor((BOARD_HEIGHT - G_BOARD_Y * BLOCK_CELL_SIZE)/2);
+
+	blockStartX = Math.floor((BLOCK_CELL_SIZE / 2) + 6 );
 	//blockStartY = Math.floor((boardStageY - G_BOARD_Y * BLOCK_CELL_SIZE)/2);
-	blockStartY = boardStartY + Math.floor((BOARD_HEIGHT - G_BOARD_Y * BLOCK_CELL_SIZE)/2);
-	
+	blockStartY = boardStartY + Math.floor((BLOCK_CELL_SIZE / 2) + 2 );
 	minX = blockStartX + CELL_BORDER_SIZE/2; //while CELL_BORDER_SIZE = 0, minX = blockStartX
 	minY = blockStartY+ CELL_BORDER_SIZE/2;	 //while CELL_BORDER_SIZE = 0, minY = blockStartY
 }
@@ -422,6 +435,13 @@ function createStageLayer()
 	gStage.add(gMessageLayer);		
 	gStage.add(gButtonLayer);
 	gStage.add(gBoardLayer);
+
+	/*var scale = { x: SCALE_FACTOR, y: SCALE_FACTOR};
+
+	gStage.setScale(scale);*/
+
+	// gStage.batchDraw();
+
 }
 
 //--------------------------
@@ -468,13 +488,24 @@ function addBackgroundLayer()
 		fill: BACKGROUND_COLOR
 	});	*/
 	
-	var board = new Kinetic.Rect({
+	/*var board = new Kinetic.Rect({
 		x: boardStartX,
 		y: boardStartY,
 		width: BOARD_WIDTH,
 		height: BOARD_HEIGHT,
 		fillPatternImage: images.board
-	});		
+	});		*/
+	var board = new Kinetic.Rect({
+		x: boardStartX,
+		y: boardStartY,
+		width: BOARD_WIDTH,
+		height: BOARD_HEIGHT,
+		fillPatternImage: images.board,
+		fillPatternScale: {
+			x:SCALE_FACTOR,
+			y:SCALE_FACTOR
+		},
+	});
 	/*
 	var title = new Kinetic.Image({
           x: titleStartX,
@@ -591,6 +622,8 @@ function writeStepInfo(step, auto)
 {
 	var context = gMessageLayer.getContext();
 	gMessageLayer.clear();
+
+	return false;
 	
 	if(typeof auto == 'undefined') auto = 0;
 	
@@ -900,6 +933,10 @@ function createBlock(id, x, y, style, draggable)
 		width:  BLOCK_CELL_SIZE*gBlockStyle[style][0]-CELL_BORDER_SIZE,
 		height: BLOCK_CELL_SIZE*gBlockStyle[style][1]-CELL_BORDER_SIZE,
 		fillPatternImage: images['block' + style],
+		fillPatternScale: {
+			x:SCALE_FACTOR,
+			y:SCALE_FACTOR
+		},
 		//fill: '#00D2FF',
 		//stroke: 'black',
 		strokeWidth: CELL_BORDER_SIZE,
@@ -962,7 +999,7 @@ function createBlock(id, x, y, style, draggable)
 				else if(shiftX > 0) moveDirection = 4; //right
 				break;
 			default:
-				error("createBlock(): design error !");
+				error("createBlock():989: design error !");
 				break;
 			}
 			
@@ -982,7 +1019,7 @@ function createBlock(id, x, y, style, draggable)
 				shiftX =  getShiftX(curX, curY, shiftX, this.getAttr('sizeX'), this.getAttr('sizeY'));
 				break;
 			default:
-				error("createBlock(): design error");
+				error("createBlock():1009: design error");
 				break;
 			}
 			if(shiftX != 0 || shiftY != 0) this.setAttrs({blockMoved:1});
@@ -1040,6 +1077,20 @@ function enableBlockDraggable(block, id)
 		} else {
 			curY = minY + curPos.posY * BLOCK_CELL_SIZE;
 		}
+
+/*
+		var TMP_BLOCK_CELL_SIZE = BLOCK_CELL_SIZE / SCALE_FACTOR
+
+		if(curPos.offsetX > TMP_BLOCK_CELL_SIZE/2) {
+			curX = minX + (curPos.posX+1) * TMP_BLOCK_CELL_SIZE;
+		} else {
+			curX = minX + curPos.posX * TMP_BLOCK_CELL_SIZE;
+		}
+		if(curPos.offsetY > TMP_BLOCK_CELL_SIZE/2) {
+			curY = minY + (curPos.posY+1) * TMP_BLOCK_CELL_SIZE;
+		} else {
+			curY = minY + curPos.posY * TMP_BLOCK_CELL_SIZE;
+		}*/
 		var newPos = point2Pos(curX, curY);
 		var oldPosX = this.getAttr('startPosX');
 		var oldPosY = this.getAttr('startPosY');
@@ -1679,9 +1730,13 @@ function addPlayModeButton()
 	resetButton = new Kinetic.Rect({
 		x: startX,
 		y: startY,
-		width: images.reset0.width,
-		height: images.reset0.height,
-		fillPatternImage: images.reset0
+		width: images.reset0.width * SCALE_FACTOR,
+		height: images.reset0.height * SCALE_FACTOR,
+		fillPatternImage: images.reset0,
+		fillPatternScale: {
+			x:SCALE_FACTOR,
+			y:SCALE_FACTOR
+		},
 	});
 
 	undoButton = new Kinetic.Rect({
@@ -1689,7 +1744,12 @@ function addPlayModeButton()
 		y: startY,
 		width: images.undo0.width,
 		height: images.undo0.height,
-		fillPatternImage: images.undo0
+		fillPatternImage: images.undo0,
+		fillPatternScale: {
+			x:SCALE_FACTOR,
+			y:SCALE_FACTOR
+		},
+		visible: false
 	});
 	
 	redoButton = new Kinetic.Rect({
@@ -1697,7 +1757,12 @@ function addPlayModeButton()
 		y: startY,
 		width: images.redo0.width,
 		height: images.redo0.height,
-		fillPatternImage: images.redo0
+		fillPatternImage: images.redo0,
+		fillPatternScale: {
+			x:SCALE_FACTOR,
+			y:SCALE_FACTOR
+		},
+		visible: false
 	});
 	
 	hintsButton = new Kinetic.Rect({
@@ -1705,7 +1770,12 @@ function addPlayModeButton()
 		y: startY,
 		width: images.hints0.width,
 		height: images.hints0.height,
-		fillPatternImage: images.hints0
+		fillPatternImage: images.hints0,
+		visible: false,
+		fillPatternScale: {
+			x:SCALE_FACTOR,
+			y:SCALE_FACTOR
+		},
 	});
 
 	playModeButton = new Kinetic.Rect({
@@ -1713,7 +1783,12 @@ function addPlayModeButton()
 		y: startY,
 		width: images.gameMode1.width,
 		height: images.gameMode1.height,
-		fillPatternImage: images.gameMode1
+		fillPatternImage: images.gameMode1,
+		visible: false,
+		fillPatternScale: {
+			x:SCALE_FACTOR,
+			y:SCALE_FACTOR
+		},
 	});
 	
 	gButtonLayer.add(resetButton);
@@ -2025,7 +2100,12 @@ function createFunctionButton()
 		scale: { x: imageScale, y: imageScale },
 		width: images.select1.width,
 		height: images.select1.height,
-		fillPatternImage: images.select1
+		fillPatternImage: images.select1,
+		visible: false,
+		fillPatternScale: {
+			x:SCALE_FACTOR,
+			y:SCALE_FACTOR
+		},
 	});
 
 	startY = startY + images.select1.height + imageSpace;
@@ -2035,7 +2115,12 @@ function createFunctionButton()
 		scale: { x: imageScale, y: imageScale },
 		width: images.info1.width,
 		height: images.info1.height,
-		fillPatternImage: images.info1
+		fillPatternImage: images.info1,
+		visible: false,
+		fillPatternScale: {
+			x:SCALE_FACTOR,
+			y:SCALE_FACTOR
+		},
 	});
 	
 	startY = startY + images.info1.height + imageSpace; 
@@ -2046,7 +2131,12 @@ function createFunctionButton()
 			scale: { x: imageScale, y: imageScale },
 			width: images.volume0.width,
 			height: images.volume0.height,
-			fillPatternImage: (volumeState?images.volume1:images.volume0)
+			fillPatternImage: (volumeState?images.volume1:images.volume0),
+			visible: false,
+			fillPatternScale: {
+				x:SCALE_FACTOR,
+				y:SCALE_FACTOR
+			},
 		});
 	}		
 	
@@ -2214,7 +2304,12 @@ function createGameButton()
 		y: startY,
 		width: images.game.width,
 		height: images.game.height,
-		fillPatternImage: images.game
+		fillPatternImage: images.game,
+		visible: false,
+		fillPatternScale: {
+			x:SCALE_FACTOR,
+			y:SCALE_FACTOR
+		},
 	});	
 	
 	gButtonLayer.add(gameButton);
@@ -2299,8 +2394,11 @@ function passLevelCallback(goNext)
 //----------------------------
 function showPassDialog(lastHighScore, curIsHigh)
 {
+
 	var tmpStepInfo = [];
 	savePlayInfo(gCurSelectedBoard, tmpStepInfo, 0, 0); //before confirm, save current select but reset status
+	passLevelCallback(1);
+	return true;
 
 	gPassLevelDialog.init( "dialogStage", //stage name
 	                       images,        //button images
